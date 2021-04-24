@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CurrencySpeakerServer.Parser;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CurrencySpeakerServer.Controllers
 {
@@ -6,10 +7,17 @@ namespace CurrencySpeakerServer.Controllers
     [Route("[controller]")]
     public class CurrencySpeakerController : ControllerBase
     {
+        private readonly ISpeakerParser _speakerParser;
+
+        public CurrencySpeakerController(ISpeakerParser speakerParser)
+        {
+            _speakerParser = speakerParser;
+        }
+
         [HttpGet]
         public string Get(string amount = null)
         {
-            return amount;
+            return _speakerParser.Parse(amount);
         }
     }
 }
