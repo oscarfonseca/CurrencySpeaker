@@ -1,27 +1,23 @@
 ﻿using System.ComponentModel;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CurrencyClient.SpeakerClient;
 
 namespace CurrencyClient.ViewModel
 {
     public class MainViewModel:INotifyPropertyChanged
     {
-        public MainViewModel()
+        private readonly ISpeakerClient _speaker;
+
+        public MainViewModel(ISpeakerClient speaker)
         {
+            _speaker = speaker;
             ConvertCurrencyCommand = new DelegateCommand(async _ => await ConvertCurrency());
         }
 
-        private async Task ConvertCurrency()
-        {
-            using var client = new HttpClient();
-            var response = await client.GetAsync($"http://localhost:50827/currencyspeaker?amount={Input}");
-            if (response.IsSuccessStatusCode)
-                Result = await response.Content.ReadAsStringAsync();
-            else
-                Result = $"Error: {response.StatusCode}";
-        }
+        private async Task ConvertCurrency() => Result = await _speaker.ConvertCurrency(Input);
+
         public ICommand ConvertCurrencyCommand { get; set; }
 
         private string _result;

@@ -4,7 +4,7 @@ namespace CurrencySpeakerServer.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CurrencySpeaker : ControllerBase
+    public class CurrencySpeakerController : ControllerBase
     {
         [HttpGet]
         public string Get(string amount = null)

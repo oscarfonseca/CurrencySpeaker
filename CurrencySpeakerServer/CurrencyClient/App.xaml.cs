@@ -7,7 +7,8 @@ namespace CurrencyClient
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainViewModel = new MainViewModel();
+            var speaker = new SpeakerClient.SpeakerClient();
+            var mainViewModel = new MainViewModel(speaker);
 
             var mainView = new MainWindow(mainViewModel);
             mainView.Show();
