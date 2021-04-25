@@ -19,7 +19,7 @@
                 Command="{Binding ConvertCurrencyCommand}"/>
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="20">
             <TextBlock Text="Result:"/>
-            <TextBlock TextWrapping="Wrap" MaxWidth="200"
+            <TextBlock TextWrapping="Wrap" MaxWidth="600"
                        Text="{Binding Result}"/>
         </StackPanel>
 

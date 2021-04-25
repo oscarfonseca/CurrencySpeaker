@@ -17,7 +17,9 @@ namespace CurrencySpeakerServer.Controllers
         [HttpGet]
         public string Get(string amount = null)
         {
-            return _speakerParser.Parse(amount);
+            return amount is null
+                ? string.Empty
+                : _speakerParser.Parse(amount);
         }
     }
 }
